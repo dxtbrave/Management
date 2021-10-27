@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1727269",
+      "name": "06商品",
+      "font_class": "shangpin",
+      "unicode": "e888",
+      "unicode_decimal": 59528
+    },
+    {
+      "icon_id": "1727360",
+      "name": "25单据-线性",
+      "font_class": "danju-xianxing",
+      "unicode": "e89a",
+      "unicode_decimal": 59546
+    },
+    {
+      "icon_id": "1727362",
+      "name": "25单据",
+      "font_class": "danju",
+      "unicode": "e89b",
+      "unicode_decimal": 59547
+    },
+    {
+      "icon_id": "1727595",
+      "name": "409折线图",
+      "font_class": "zhexiantu",
+      "unicode": "e904",
+      "unicode_decimal": 59652
+    },
+    {
+      "icon_id": "6151108",
+      "name": "database set-fill",
+      "font_class": "databaseset-fill",
+      "unicode": "e7b4",
+      "unicode_decimal": 59316
+    },
+    {
+      "icon_id": "6151149",
+      "name": "user-group-fill",
+      "font_class": "user-group-fill",
+      "unicode": "e7d3",
+      "unicode_decimal": 59347
+    },
+    {
       "icon_id": "18267974",
       "name": "文档",
       "font_class": "wendang",

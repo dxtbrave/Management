@@ -1,0 +1,88 @@
+<template>
+  <div>
+    <!-- 收缩栏 -->
+    <div class="toggle-button" @click="toggleCollapse">|||</div>
+    <el-menu
+        background-color="#333744"
+        text-color="#fff"
+        :unique-opened="true"
+        :collapse="isCollapsed"
+        :collapse-transition="false"
+        active-text-color="#409EFF">
+      <!-- 一级菜单 -->
+      <el-submenu  v-for="item in menulist" :index="item.id + ''" :key="item.id">
+        <!-- 一级菜单的模板区域 -->
+        <template slot="title">
+          <!-- 图标 -->
+          <i :class="iconObj[item.id]"></i>
+          <!-- 文本 -->
+          <span>{{item.authName}}</span>
+        </template>
+
+        <!--   二级菜单   -->
+        <el-menu-item :index="subItem.id + ''" v-for="subItem in item.children" :key="subItem.id">
+          <template slot="title">
+            <!-- 图标 -->
+            <i class="el-icon-menu"></i>
+            <!-- 文本 -->
+            <span>{{subItem.authName}}</span>
+          </template>
+        </el-menu-item>
+      </el-submenu>
+
+    </el-menu>
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: "asideArea",
+  data(){
+    return{
+      iconObj:{
+        '125':'iconfont icon-user-group-fill',
+        '103':'iconfont icon-databaseset-fill',
+        '101':'iconfont icon-shangpin',
+        '102':'iconfont icon-danju',
+        '145':'iconfont icon-zhexiantu',
+      },
+    //  是否折叠
+      isCollapsed:false
+    }
+  },
+  props: {
+    menulist:Array
+  },
+  watch:{
+    isCollapsed(){
+      this.$emit('collapsedChange',this.isCollapsed)
+    }
+  },
+  methods:{
+    // 点击按钮，切换菜单的折叠与展开
+    toggleCollapse(){
+      this.isCollapsed = !this.isCollapsed
+    }
+  }
+}
+</script>
+
+<style scoped>
+.toggle-button{
+  background-color: #4a5064;
+  font-size: 10px;
+  line-height: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+}
+
+.iconfont{
+  margin-right: 10px;
+}
+.el-menu{
+  border-right: none;
+}
+</style>

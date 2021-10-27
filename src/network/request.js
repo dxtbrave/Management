@@ -7,6 +7,13 @@ export function request(config){
         timeout:5000,
     })
 //    2.axios的拦截器
+//    请求拦截
+    instance.interceptors.request.use(config=>{
+    //    为请求头对象，添加Token验证的 Authorization 字段
+        config.headers.Authorization = window.sessionStorage.getItem('token')
+        // 在最后必须return config
+        return config
+    })
 //    响应拦截
     instance.interceptors.response.use(res=>{
         return res.data
