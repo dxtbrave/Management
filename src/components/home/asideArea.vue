@@ -8,6 +8,7 @@
         :unique-opened="true"
         :collapse="isCollapsed"
         :collapse-transition="false"
+        :router="true"
         active-text-color="#409EFF">
       <!-- 一级菜单 -->
       <el-submenu  v-for="item in menulist" :index="item.id + ''" :key="item.id">
@@ -20,7 +21,7 @@
         </template>
 
         <!--   二级菜单   -->
-        <el-menu-item :index="subItem.id + ''" v-for="subItem in item.children" :key="subItem.id">
+        <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id">
           <template slot="title">
             <!-- 图标 -->
             <i class="el-icon-menu"></i>
