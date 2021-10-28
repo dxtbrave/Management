@@ -45,7 +45,10 @@ export default {
 
     getMenuList().then(res=>{
       if (res.meta.status !== 200){
-        return this.$message.error(res.meta.msg)
+        return this.$message.error({
+          message:res.meta.msg,
+          showClose:true
+        })
       }else{
         this.menulist = res.data
       }

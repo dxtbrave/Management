@@ -18,7 +18,7 @@
           </el-form-item>
         <!--     密码     -->
         <el-form-item label="密码" prop="psw">
-          <el-input prefix-icon="iconfont icon-wendang" v-model="ruleForm.psw" type="password"></el-input>
+          <el-input prefix-icon="iconfont icon-wendang" v-model="ruleForm.psw" type="password" show-password></el-input>
         </el-form-item>
         <!--     按钮区域     -->
         <el-form-item class="btns">
