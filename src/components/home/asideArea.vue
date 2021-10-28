@@ -9,6 +9,7 @@
         :collapse="isCollapsed"
         :collapse-transition="false"
         :router="true"
+        :default-active="activePaht"
         active-text-color="#409EFF">
       <!-- 一级菜单 -->
       <el-submenu  v-for="item in menulist" :index="item.id + ''" :key="item.id">
@@ -21,7 +22,10 @@
         </template>
 
         <!--   二级菜单   -->
-        <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id">
+        <el-menu-item :index="'/' + subItem.path"
+                      v-for="subItem in item.children"
+                      :key="subItem.id"
+                      @click="saveNavState('/' + subItem.path)">
           <template slot="title">
             <!-- 图标 -->
             <i class="el-icon-menu"></i>
@@ -48,8 +52,10 @@ export default {
         '102':'iconfont icon-danju',
         '145':'iconfont icon-zhexiantu',
       },
-    //  是否折叠
-      isCollapsed:false
+      // 是否折叠
+      isCollapsed:false,
+      // 被激活的链接地址
+      activePaht:''
     }
   },
   props: {
@@ -64,8 +70,16 @@ export default {
     // 点击按钮，切换菜单的折叠与展开
     toggleCollapse(){
       this.isCollapsed = !this.isCollapsed
+    },
+  //  保存链接的激活状态
+    saveNavState(activePath){
+      window.sessionStorage.setItem('activePath',activePath)
+      this.activePaht = activePath
     }
-  }
+  },
+  created() {
+    this.activePaht =  window.sessionStorage.getItem('activePath')
+  },
 }
 </script>
 
