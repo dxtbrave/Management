@@ -30,9 +30,9 @@
       <el-table-column align="center" label="操作" width="180px">
         <template slot-scope="scope">
           <!--     修改按钮     -->
-          <el-button type="primary" icon="el-icon-edit" circle></el-button>
+          <el-button type="primary" icon="el-icon-edit" circle @click="showEditDialog(scope.row.id)"></el-button>
           <!--     删除按钮    -->
-          <el-button type="danger" icon="el-icon-delete" circle></el-button>
+          <el-button type="danger" icon="el-icon-delete" circle @click="deleteUserById(scope.row.id)"></el-button>
           <!--     分配角色按钮     -->
           <el-tooltip effect="dark" content="分配角色" placement="top">
             <el-button type="warning" icon="el-icon-star-off" circle></el-button>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {changeUserInfo} from "@/network/users";
+import {changeUserInfo , deleteUserInfo} from "@/network/users";
 
 export default {
   name: "CardView",
@@ -70,6 +70,43 @@ export default {
 
       })
     },
+    // 发送显示修改用户对话框
+    showEditDialog(userid){
+      this.$Bus.$emit('showEditDialog',userid)
+    },
+    // 删除用户弹窗
+    async deleteUserById(userid){
+     let result = await this.$confirm('此操作将永久删除该用户, 是否继续?','警告',{
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(res=>res).catch(err=>err)
+
+      // 如果用户确认删除，则返回值为字符串 confirm
+      // 如果用户取消删除，则返回值为字符串 cancel
+      if (result !== 'confirm'){
+       return this.$message.info({
+          message:'已经取消删除',
+          showClose:true
+        })
+      }else{
+        deleteUserInfo(userid).then(res=>{
+          if (res.meta.status !== 200){
+            this.$message.error({
+              message:res.meta.msg,
+              showClose:true
+            })
+          }else{
+            this.$message.success({
+              message:res.meta.msg,
+              showClose:true
+            })
+            // 发送刷新界面指令
+            this.$emit('updateUserList')
+          }
+        })
+      }
+    }
   }
 }
 </script>

@@ -35,3 +35,31 @@ export function addUserInfo(userInfo){
         }
     })
 }
+
+// 通过id查询用户信息
+export function queryUserInfo(id){
+    return request({
+        method:'get',
+        url:`/users/${id}`
+    })
+}
+
+// 编辑用户提交
+export function editUserInfo(id,email,mobile){
+    return request({
+        method:'put',
+        url:`/users/${id}`,
+        data:{
+            email,
+            mobile
+        }
+    })
+}
+
+// 删除用户信息
+export function deleteUserInfo(id){
+    return request({
+        method:'delete',
+        url:`/users/${id}`
+    })
+}
