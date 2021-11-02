@@ -44,6 +44,9 @@
 
     <!--  修改用户对话框  -->
     <edit-dialog @updateUserList="_getUserList"/>
+
+<!--  分配角色对话框  -->
+    <set-role-dialog @updateUserList="_getUserList"/>
   </div>
 </template>
 
@@ -52,6 +55,7 @@ import {getUserlist, addUserInfo} from "@/network/users";
 import UserCardView from "@/components/user/UserCardView";
 import EditDialog from "@/components/user/dialog/EditDialog";
 import AddDialog from "@/components/user/dialog/AddDialog";
+import SetRoleDialog from "@/components/user/dialog/SetRoleDialog";
 
 export default {
   name: "Users",
@@ -74,6 +78,7 @@ export default {
     UserCardView,
     EditDialog,
     AddDialog,
+    SetRoleDialog,
   },
   created() {
     this._getUserList()

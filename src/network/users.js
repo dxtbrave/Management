@@ -63,3 +63,22 @@ export function deleteUserInfo(id){
         url:`/users/${id}`
     })
 }
+
+// 获取角色列表
+export function getRolesList(){
+    return request({
+        method:'get',
+        url:'/roles'
+    })
+}
+
+// 分配用户角色
+export function saveUserRole(id,rid){
+    return request({
+        method:'put',
+        url:`/users/${id}/role`,
+        data:{
+            rid
+        }
+    })
+}

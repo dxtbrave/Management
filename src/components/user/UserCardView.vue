@@ -34,7 +34,7 @@
           <el-button type="danger" icon="el-icon-delete" circle @click="deleteUserById(scope.row.id)"></el-button>
           <!--     分配角色按钮     -->
           <el-tooltip effect="dark" content="分配角色" placement="top">
-            <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+            <el-button type="warning" icon="el-icon-star-off" circle @click="setRole(scope.row)"></el-button>
           </el-tooltip>
         </template>
       </el-table-column>
@@ -73,6 +73,7 @@ export default {
     showEditDialog(userid){
       this.$Bus.$emit('showEditDialog',userid)
     },
+
     // 删除用户弹窗
     async deleteUserById(userid){
      let result = await this.$confirm('此操作将永久删除该用户, 是否继续?','警告',{
@@ -105,6 +106,11 @@ export default {
           }
         })
       }
+    },
+
+    // 分配角色弹窗
+    setRole(scopeRow){
+      this.$Bus.$emit('setRole',scopeRow)
     }
   }
 }
