@@ -7,7 +7,7 @@
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!--  卡片视图区  -->
-    <cardview :userlist="userlist"
+    <user-card-view :userlist="userlist"
               :queryInfo="queryInfo"
               @updateUserList="_getUserList"
               :total="total">
@@ -37,7 +37,7 @@
         </el-pagination>
       </template>
 
-    </cardview>
+    </user-card-view>
 
     <!--  添加用户对话框  -->
     <add-dialog @updateUserList="_getUserList"/>
@@ -49,7 +49,7 @@
 
 <script>
 import {getUserlist, addUserInfo} from "@/network/users";
-import cardview from '@/components/user/UserCardView'
+import UserCardView from "@/components/user/UserCardView";
 import EditDialog from "@/components/user/dialog/EditDialog";
 import AddDialog from "@/components/user/dialog/AddDialog";
 
@@ -71,7 +71,7 @@ export default {
     }
   },
   components: {
-    cardview,
+    UserCardView,
     EditDialog,
     AddDialog,
   },
