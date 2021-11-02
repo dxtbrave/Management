@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: "asideArea",
+  name: "AsideArea",
   data(){
     return{
       iconObj:{

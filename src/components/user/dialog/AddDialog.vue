@@ -82,6 +82,7 @@ export default {
           {validator: checkMobile, trigger: 'blur'}
         ]
       },
+      // 判断是否为成功按钮
       isTrue:false
     }
   },

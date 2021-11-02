@@ -44,7 +44,7 @@ export function queryUserInfo(id){
     })
 }
 
-// 编辑用户提交
+// 编辑用户信息
 export function editUserInfo(id,email,mobile){
     return request({
         method:'put',

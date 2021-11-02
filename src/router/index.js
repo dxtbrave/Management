@@ -2,10 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router"
 
 // 导入组件
-import login from '@/components/login/login'
-import home from "@/components/home/home";
-import welcome from "@/components/welcome/welcome";
-import users from "@/components/user/users";
+import login from '@/components/login/Login'
+import home from "@/components/home/Home";
+import welcome from "@/components/welcome/Welcome";
+import users from "@/components/user/Users";
+import roles from "@/components/power/roles/Roles"
+import rights from "@/components/power/rights/Rights"
 
 Vue.use(VueRouter)
 const routes = [
@@ -29,9 +31,19 @@ const routes = [
             {
                 path: '/users',
                 component: users
+            },
+            {
+                path:'/roles',
+                component: roles,
+            },
+            {
+                path: '/rights',
+                component: rights,
             }
         ]
-    }
+    },
+
+
 ]
 
 const router = new VueRouter({
@@ -50,6 +62,12 @@ router.beforeEach((to,from,next)=>{
     if (to.path === '/Login'){
         return next()
     }
+
+    if (to.path === '/Welcome'){
+        console.log('111')
+        window.sessionStorage.setItem('activePath','/Welcome')
+    }
+
    // 获取token
     const tokenStr = window.sessionStorage.getItem('token')
     if (!tokenStr){

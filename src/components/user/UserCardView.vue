@@ -11,7 +11,6 @@
       </el-col>
     </el-row>
     <!--  用户列表区域  -->
-    <!--        <slot name="userlist"></slot>-->
     <el-table :data="userlist" border stripe>
       <el-table-column align="center" label="#" type="index"></el-table-column>
       <el-table-column align="center" label="姓名" prop="username"></el-table-column>
@@ -40,8 +39,8 @@
         </template>
       </el-table-column>
     </el-table>
-<!--  分页区域  -->
-      <slot name="pagination"></slot>
+    <!--  分页区域  -->
+    <slot name="pagination"></slot>
   </el-card>
 </template>
 
@@ -49,7 +48,7 @@
 import {changeUserInfo , deleteUserInfo} from "@/network/users";
 
 export default {
-  name: "CardView",
+  name: "UserCardView",
   props: {
     userlist: Array,
   },

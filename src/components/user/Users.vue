@@ -2,7 +2,7 @@
   <div>
     <!--  面包屑导航区  -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/Home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
@@ -50,12 +50,12 @@
 
 <script>
 import {getUserlist, addUserInfo} from "@/network/users";
-import cardview from '@/components/user/CardView'
+import cardview from '@/components/user/UserCardView'
 import EditDialog from "@/components/user/dialog/EditDialog";
 import AddDialog from "@/components/user/dialog/AddDialog";
 
 export default {
-  name: "users",
+  name: "Users",
   data() {
     return {
       queryInfo: {
@@ -97,7 +97,6 @@ export default {
     },
     // 监听pagesize 改变的事件
     handleSizeChange(newsize) {
-      // console.log(newsize)
       this.queryInfo.pagesize = newsize
       this._getUserList()
     },
@@ -118,6 +117,7 @@ export default {
         this._getUserList()
       }
     },
+
 
   }
 }

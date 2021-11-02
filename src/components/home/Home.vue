@@ -28,10 +28,10 @@
 <script>
 import {getMenuList} from "@/network/home";
 
-import asideArea from "@/components/home/asideArea";
+import asideArea from "@/components/home/AsideArea";
 
 export default {
-  name: "home",
+  name: "Home",
   data(){
     return{
       menulist:[],

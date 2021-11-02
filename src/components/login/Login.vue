@@ -22,7 +22,7 @@
         </el-form-item>
         <!--     按钮区域     -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="primary" @click="Login">登录</el-button>
           <el-button type="primary" @click="resetLoginForm">重置</el-button>
         </el-form-item>
       </el-form>
@@ -34,7 +34,7 @@
 import {getLogin} from "@/network/login";
 
 export default {
-  name: "login",
+  name: "Login",
   data(){
     return{
       show:true,
@@ -62,13 +62,13 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     // 点击登录按钮
-    login(){
+    Login(){
       this.$refs.loginFormRef.validate(async (valid)=>{
         if (!valid){
           return
         }
         getLogin(this.ruleForm.name,this.ruleForm.psw).then(res=>{
-          if (res.meta.status == 200){
+          if (res.meta.status === 200){
             // 登录成功时提示
             this.$message.success({
               message:res.meta.msg,
