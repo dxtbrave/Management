@@ -1,7 +1,7 @@
 <template>
   <el-dialog
       title="添加用户"
-      :visible.sync="isaddDialogVisible"
+      :visible.sync="addDialogVisible"
       @close="addDialogClosed"
       width="50%">
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
@@ -23,7 +23,7 @@
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-    <el-button @click="addDialogVisibleChange">取 消</el-button>
+    <el-button @click="setUserDialogVisibleChange">取 消</el-button>
     <el-button type="primary" @click="addUser">确 定</el-button>
   </span>
   </el-dialog>
@@ -55,7 +55,7 @@ export default {
       cb(new Error('请输入正确的手机号'))
     }
     return {
-      isaddDialogVisible:false,
+      addDialogVisible: false,
       // 添加用户的表单数据
       addForm: {
         username: '',
@@ -82,27 +82,21 @@ export default {
           {validator: checkMobile, trigger: 'blur'}
         ]
       },
-      // 判断是否为成功按钮
-      isTrue:false
     }
   },
-  props: {
-    addDialogVisible: Boolean
+  mounted() {
+    this.$Bus.$on('showAddDialog', () => {
+      this.addDialogVisible = true
+    })
   },
   methods: {
     //  监听添加用户对话框的事件
     addDialogClosed() {
       this.$refs.addFormRef.resetFields()
-      this.addDialogVisibleChange()
     },
-    // 发送关闭对话框事件
-    addDialogVisibleChange() {
-      if (this.isTrue){
-        this.$emit('addDialogVisibleChange',true)
-      }else{
-        this.$emit('addDialogVisibleChange',false)
-      }
-      this.isTrue = false
+    // 关闭对话框事件
+    setUserDialogVisibleChange() {
+      this.addDialogVisible = false
     },
     //  添加用户事件
     addUser() {
@@ -110,29 +104,26 @@ export default {
         if (!valid) return
         addUserInfo(this.addForm).then(res => {
           if (res.meta.status !== 201) {
+            // 发布失败信息
             this.$message.error({
               message: res.meta.msg,
               showClose: true
             })
           } else {
+            //  关闭用户对话框
+            this.setUserDialogVisibleChange()
+            //  刷新用户列表
+            this.$emit('updateUserList')
+            // 发布成功信息
             this.$message.success({
               message: res.meta.msg,
               showClose: true
             })
-          //  隐藏用户对话框
-            this.isTrue = true
-            this.isaddDialogVisible = false
           }
-          this.isaddDialogVisible = false
         })
       })
     }
   },
-  watch:{
-    addDialogVisible(newValue){
-      this.isaddDialogVisible = newValue
-    }
-  }
 }
 </script>
 

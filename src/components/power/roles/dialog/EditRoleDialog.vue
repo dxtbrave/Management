@@ -48,21 +48,26 @@ export default {
     }
   },
   methods:{
-    // 发送关闭对话框事件
+    // 关闭对话框事件
     editRoleDialogVisibleChange() {
       this.editRoleDialogVisible = false
     },
     //  监听修改对话框的关闭事件
     editRoleDialogClosed() {
       this.$refs.editRoleFormRef.resetFields()
-      // this.editRoleDialogVisibleChange()
     },
     editRoleInfo(){
       this.$refs.editRoleFormRef.validate(valid=>{
         if (!valid) return
         let {roleId,roleName,roleDesc} = this.editRoleForm
         editRoleInfo(roleId,roleName,roleDesc).then(res=>{
-          if (res.meta.status === 200) {
+          if (res.meta.status !== 200) {
+            // 错误提示
+            this.$message.error({
+              message: res.meta.msg,
+              showClose: true
+            })
+          } else {
             //  关闭对话框
             this.editRoleDialogVisibleChange()
             //  刷新用户列表
@@ -71,12 +76,6 @@ export default {
             this.$message.success({
               // message: res.meta.msg,
               message:'修改成功',
-              showClose: true
-            })
-          } else {
-            // 错误提示
-            this.$message.error({
-              message: res.meta.msg,
               showClose: true
             })
           }

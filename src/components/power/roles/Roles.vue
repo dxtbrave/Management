@@ -11,18 +11,17 @@
     <RolesCardView :rolelist="rolelist" @updateRoleList="_getRolesList">
       <!--  添加角色按钮区域    -->
       <template v-slot:addUser>
-        <el-button type="primary" @click="addRoleDialogVisible = true">添加角色</el-button>
+        <el-button type="primary" @click="showAddRightDialog">添加角色</el-button>
       </template>
     </RolesCardView>
 
     <!--  添加角色对话框  -->
-    <add-role-dialog :addRoleDialogVisible="addRoleDialogVisible"
-                     @addRoleDialogVisibleChange="addDialogVisibleChange"/>
+    <add-role-dialog @updateRoleList="_getRolesList"/>
 
     <!--  修改角色对话框  -->
     <edit-role-dialog @updateRoleList="_getRolesList"/>
 
-<!--  分配权限对话框  -->
+    <!--  分配权限对话框  -->
     <set-right-dialog @updateRoleList="_getRolesList"/>
 
   </div>
@@ -70,17 +69,13 @@ export default {
       })
     },
 
-
     /**
-     * 关闭用户对话框
+     *  显示添加角色权限弹窗
      */
-
-    addDialogVisibleChange(value){
-      this.addRoleDialogVisible = false
-      if (value){
-        this._getRolesList()
-      }
+    showAddRightDialog() {
+      this.$Bus.$emit('showAddRoleDialog')
     },
+
   }
 }
 </script>

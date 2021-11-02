@@ -21,7 +21,7 @@
 
       <!--  添加用户按钮    -->
       <template v-slot:addbtn>
-        <el-button type="primary" @click="addDialogVisible = true">添加用户</el-button>
+        <el-button type="primary" @click="showAddRightDialog">添加用户</el-button>
       </template>
 
       <!--   分页栏   -->
@@ -40,8 +40,7 @@
     </cardview>
 
     <!--  添加用户对话框  -->
-    <add-dialog :addDialogVisible="addDialogVisible"
-                @addDialogVisibleChange="addDialogVisibleChange"/>
+    <add-dialog @updateUserList="_getUserList"/>
 
     <!--  修改用户对话框  -->
     <edit-dialog @updateUserList="_getUserList"/>
@@ -108,14 +107,10 @@ export default {
     },
 
     /**
-     * 关闭用户对话框
+     *  显示添加角色权限弹窗
      */
-
-    addDialogVisibleChange(value){
-      this.addDialogVisible = false
-      if (value){
-        this._getUserList()
-      }
+    showAddRightDialog() {
+      this.$Bus.$emit('showAddDialog')
     },
 
 
