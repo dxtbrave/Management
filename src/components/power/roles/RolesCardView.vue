@@ -3,7 +3,7 @@
     <el-row>
       <!--  添加角色按钮区域    -->
       <el-col>
-        <slot name="addUser"></slot>
+        <slot name="addRole"></slot>
       </el-col>
     </el-row>
     <!--  角色列表区域  -->

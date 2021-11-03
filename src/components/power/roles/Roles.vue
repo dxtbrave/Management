@@ -10,7 +10,7 @@
     <!--  卡片视图区  -->
     <RolesCardView :rolelist="rolelist" @updateRoleList="_getRolesList">
       <!--  添加角色按钮区域    -->
-      <template v-slot:addUser>
+      <template v-slot:addRole>
         <el-button type="primary" @click="showAddRightDialog">添加角色</el-button>
       </template>
     </RolesCardView>

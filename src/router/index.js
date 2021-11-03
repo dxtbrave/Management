@@ -8,38 +8,22 @@ import welcome from "@/components/welcome/Welcome";
 import users from "@/components/user/Users";
 import roles from "@/components/power/roles/Roles"
 import rights from "@/components/power/rights/Rights"
+import cate from "@/components/goods/categories/Cate";
 
 Vue.use(VueRouter)
 const routes = [
-    {
-        path:'',
-        redirect:'/Login'
-    },
-    {
-        path:'/Login',
-        component:login,
-    },
+    {path:'', redirect:'/Login'},
+    {path:'/Login', component:login,},
     {
         path: '/Home',
         component: home,
         redirect:'/Welcome',
         children:[
-            {
-                path:'/Welcome',
-                component:welcome
-            },
-            {
-                path: '/users',
-                component: users
-            },
-            {
-                path:'/roles',
-                component: roles,
-            },
-            {
-                path: '/rights',
-                component: rights,
-            }
+            {path:'/Welcome', component:welcome},
+            {path: '/users', component: users},
+            {path:'/roles', component: roles,},
+            {path: '/rights', component: rights,},
+            {path:'/categories', component: cate}
         ]
     },
 
