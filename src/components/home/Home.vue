@@ -11,8 +11,8 @@
     <!--  页面主题区域  -->
     <el-container>
       <!--  侧边栏  -->
-      <el-aside :width="Collapsed ? '64px' : '200px' " >
-
+<!--      <el-aside id="aside" :width="Collapsed ? '64px' : '200px' " >-->
+        <el-aside id="aside" :width="'200px'" >
         <aside-area ref="aside"
                     :menulist="menulist"
                     @collapsedChange="collapsedChange"/>
@@ -29,6 +29,8 @@
 import {getMenuList} from "@/network/home";
 
 import asideArea from "@/components/home/AsideArea";
+
+import {TweenMax} from 'gsap'
 
 export default {
   name: "Home",
@@ -55,7 +57,6 @@ export default {
     })
   },
   mounted() {
-
   },
   computed:{
 
@@ -71,6 +72,15 @@ export default {
     },
     collapsedChange(res){
       this.Collapsed = res
+    }
+  },
+  watch:{
+    Collapsed(newValue){
+      if (newValue){
+        TweenMax.to('#aside',0.2,{width:64})
+      }else{
+        TweenMax.to('#aside',0.2,{width:200})
+      }
     }
   }
 }
