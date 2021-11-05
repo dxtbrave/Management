@@ -117,6 +117,7 @@ export default {
 
 .el-aside {
   background-color: #333744;
+  user-select: none;
 }
 
 .el-main {
