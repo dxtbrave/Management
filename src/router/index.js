@@ -1,6 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router"
 
+// 引入 nprogress
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 // 导入组件
 import login from '@/components/login/Login'
 import home from "@/components/home/Home";
@@ -37,6 +41,8 @@ const router = new VueRouter({
 
 // 挂载路由导航守卫
 router.beforeEach((to,from,next)=>{
+
+    NProgress.set(0.7)
     /**
      * to 将要访问的路径
      * from 代表从哪个路径跳转而来
@@ -58,6 +64,13 @@ router.beforeEach((to,from,next)=>{
         return next('/Login')
     }
     next()
+})
+
+router.afterEach(()=>{
+    setTimeout(()=>{
+        NProgress.done(true)
+    },500)
+
 })
 
 export default router

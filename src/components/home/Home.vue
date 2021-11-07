@@ -19,7 +19,9 @@
       </el-aside>
       <!--  右侧内容主题  -->
       <el-main>
-        <router-view></router-view>
+        <transition name="slide-fade">
+          <router-view></router-view>
+        </transition>
       </el-main>
     </el-container>
   </el-container>
