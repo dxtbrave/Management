@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import {addCategories} from "@/network/categories";
+import {addCategories} from "@/network/goods/categories";
 
 export default {
   name: "AddCateDialog",
@@ -103,7 +103,7 @@ export default {
         this.addCateForm.cat_level = 0
       }
     },
-    // 点击按钮，添加新的分类
+    // 点击确定按钮，添加新的分类
     addCate() {
       this.$refs.addCateFormRef.validate(valid => {
         if (!valid) return

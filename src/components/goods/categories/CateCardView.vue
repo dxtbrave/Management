@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import {deleteCateInfo} from "@/network/categories";
+import {deleteCateInfo} from "@/network/goods/categories";
 
 export default {
   name: "CateCardView",

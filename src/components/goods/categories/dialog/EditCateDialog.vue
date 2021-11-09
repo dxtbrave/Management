@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {queryCateInfo,editCateInfo} from "@/network/categories";
+import {queryCateInfo,editCateInfo} from "@/network/goods/categories";
 
 export default {
   name: "EditCateDialog",

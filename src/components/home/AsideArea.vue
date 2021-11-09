@@ -9,7 +9,7 @@
         :collapse="isCollapsed"
         :collapse-transition="false"
         :router="true"
-        :default-active="activePaht"
+        :default-active="activePath"
         active-text-color="#409EFF">
       <!-- 一级菜单 -->
       <el-submenu  v-for="item in menulist" :index="item.id + ''" :key="item.id">
@@ -55,7 +55,7 @@ export default {
       // 是否折叠
       isCollapsed:false,
       // 被激活的链接地址
-      activePaht:''
+      activePath:''
     }
   },
   props: {
@@ -74,12 +74,14 @@ export default {
   //  保存链接的激活状态
     saveNavState(activePath){
       window.sessionStorage.setItem('activePath',activePath)
-      this.activePaht = activePath
+      this.activePath = activePath
     }
   },
   created() {
-    this.activePaht =  window.sessionStorage.getItem('activePath')
+    this.activePath =  window.sessionStorage.getItem('activePath')
   },
+  mounted() {
+  }
 }
 </script>
 

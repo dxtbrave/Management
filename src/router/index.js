@@ -13,6 +13,7 @@ import users from "@/components/user/Users";
 import roles from "@/components/power/roles/Roles"
 import rights from "@/components/power/rights/Rights"
 import cate from "@/components/goods/categories/Cate";
+import params from "@/components/goods/params/Params"
 
 Vue.use(VueRouter)
 const routes = [
@@ -27,7 +28,8 @@ const routes = [
             {path: '/users', component: users},
             {path:'/roles', component: roles,},
             {path: '/rights', component: rights,},
-            {path:'/categories', component: cate}
+            {path:'/categories', component: cate},
+            {path:'/params', component: params},
         ]
     },
 
@@ -54,7 +56,6 @@ router.beforeEach((to,from,next)=>{
     }
 
     if (to.path === '/Welcome'){
-        console.log('111')
         window.sessionStorage.setItem('activePath','/Welcome')
     }
 

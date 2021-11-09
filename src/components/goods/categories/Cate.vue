@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {getCategories} from "@/network/categories";
+import {getCategories} from "@/network/goods/categories";
 
 import CateCardView from "@/components/goods/categories/CateCardView";
 import AddCateDialog from "@/components/goods/categories/dialog/AddCateDialog";
