@@ -1,40 +1,42 @@
 <template>
-  <el-card shadow="hover">
-    <el-row>
-      <!--  添加角色按钮区域    -->
-      <el-col>
-        <slot name="addRole"></slot>
-      </el-col>
-    </el-row>
-    <!--  角色列表区域  -->
-    <el-table :data="rolelist" border stripe>
-      <!--  展开列    -->
-      <el-table-column type="expand">
-        <template slot-scope="scope">
-          <roles-extend-view :scoperow="scope.row"/>
-        </template>
-      </el-table-column>
-      <!--  索引列  -->
-      <el-table-column align="center" label="#" type="index"></el-table-column>
-      <el-table-column align="center" label="角色名称" prop="roleName"></el-table-column>
-      <el-table-column align="center" label="角色描述" prop="roleDesc"></el-table-column>
-      <el-table-column align="center" label="操作" width="300px">
-        <template slot-scope="scope">
-          <!--    编辑按钮      -->
-          <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditRoleDialog(scope.row.id)">编辑
-          </el-button>
-          <!--    删除按钮      -->
-          <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteRoleById(scope.row.id)">删除
-          </el-button>
-          <!--    分配权限按钮      -->
-          <el-button size="mini" type="warning" icon="el-icon-setting" @click="showSetRightDialog(scope.row)">分配权限
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-
-  </el-card>
+  <div style="height: 82vh">
+    <el-scrollbar style="height: 100%">
+      <el-card shadow="hover">
+        <el-row>
+          <!--  添加角色按钮区域    -->
+          <el-col>
+            <slot name="addRole"></slot>
+          </el-col>
+        </el-row>
+        <!--  角色列表区域  -->
+        <el-table :data="rolelist" border stripe>
+          <!--  展开列    -->
+          <el-table-column type="expand">
+            <template slot-scope="scope">
+              <roles-extend-view :scoperow="scope.row"/>
+            </template>
+          </el-table-column>
+          <!--  索引列  -->
+          <el-table-column align="center" label="#" type="index"></el-table-column>
+          <el-table-column align="center" label="角色名称" prop="roleName"></el-table-column>
+          <el-table-column align="center" label="角色描述" prop="roleDesc"></el-table-column>
+          <el-table-column align="center" label="操作" width="300px">
+            <template slot-scope="scope">
+              <!--    编辑按钮      -->
+              <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditRoleDialog(scope.row.id)">编辑
+              </el-button>
+              <!--    删除按钮      -->
+              <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteRoleById(scope.row.id)">删除
+              </el-button>
+              <!--    分配权限按钮      -->
+              <el-button size="mini" type="warning" icon="el-icon-setting" @click="showSetRightDialog(scope.row)">分配权限
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-card>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>

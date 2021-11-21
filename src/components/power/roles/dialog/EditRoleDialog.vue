@@ -56,6 +56,7 @@ export default {
     editRoleDialogClosed() {
       this.$refs.editRoleFormRef.resetFields()
     },
+    // 编辑信息事件
     editRoleInfo(){
       this.$refs.editRoleFormRef.validate(valid=>{
         if (!valid) return

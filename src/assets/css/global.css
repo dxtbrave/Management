@@ -17,3 +17,19 @@ html, body , #app{
 .el-pagination{
     margin-top: 30px;
 }
+
+.el-steps{
+    margin:15px 0;
+}
+.el-step__title{
+    font-size: 13px;
+}
+
+/* 为了消除横轴的滚动条*/
+.el-scrollbar__wrap{
+    overflow-x: hidden;
+}
+
+.ql-editor{
+    min-height: 300px;
+}

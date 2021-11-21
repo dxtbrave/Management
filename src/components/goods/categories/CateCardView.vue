@@ -1,51 +1,57 @@
 <template>
-  <el-card shadow="hover">
-    <el-row>
-      <!--  添加分类按钮区域    -->
-      <el-col>
-        <slot name="addCate"></slot>
-      </el-col>
-    </el-row>
+  <div style="height: 82vh">
+    <el-scrollbar style="height: 100%">
+      <el-card shadow="hover">
+        <el-row>
+          <!--  添加分类按钮区域    -->
+          <el-col>
+            <slot name="addCate"></slot>
+          </el-col>
+        </el-row>
 
-    <!--  表格  -->
-    <tree-table class="treeTable"
-                :data="cateList"
-                :columns="columns"
-                :selection-type="false"
-                :expand-type="false"
-                :show-index="true"
-                index-text="#"
-                :border="true"
-                :show-row-hover="false">
-      <!--  是否有效 模板   -->
-      <template slot="isOk" slot-scope="scope">
-        <i class="el-icon-success"
-           v-if="scope.row.cat_deleted  === false"
-           style="color:lightgreen;"></i>
-        <i class="el-icon-error"
-           v-else
-           style="color:red;"></i>
-      </template>
+        <!--  表格  -->
+        <tree-table class="treeTable"
+                    :data="cateList"
+                    :columns="columns"
+                    :selection-type="false"
+                    :expand-type="false"
+                    :show-index="true"
+                    index-text="#"
+                    :border="true"
+                    :show-row-hover="false">
+          <!--  是否有效 模板   -->
+          <template slot="isOk" slot-scope="scope">
+            <i class="el-icon-success"
+               v-if="scope.row.cat_deleted  === false"
+               style="color:lightgreen;"></i>
+            <i class="el-icon-error"
+               v-else
+               style="color:red;"></i>
+          </template>
 
-      <!--  排序 模板   -->
-      <template slot="order" slot-scope="scope">
-        <el-tag size="mini" v-if="scope.row.cat_level === 0">一级</el-tag>
-        <el-tag size="mini" v-else-if="scope.row.cat_level === 1" type="success">二级</el-tag>
-        <el-tag size="mini" v-else type="warning">三级</el-tag>
-      </template>
-      <!-- 操作 模板 -->
-      <template slot="option" slot-scope="scope">
-        <!--    编辑按钮      -->
-        <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditCateDialog(scope.row.cat_id)">编辑</el-button>
-        <!--    删除按钮      -->
-        <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteRoleById(scope.row.cat_id)">删除</el-button>
-      </template>
-    </tree-table>
+          <!--  排序 模板   -->
+          <template slot="order" slot-scope="scope">
+            <el-tag size="mini" v-if="scope.row.cat_level === 0">一级</el-tag>
+            <el-tag size="mini" v-else-if="scope.row.cat_level === 1" type="success">二级</el-tag>
+            <el-tag size="mini" v-else type="warning">三级</el-tag>
+          </template>
+          <!-- 操作 模板 -->
+          <template slot="option" slot-scope="scope">
+            <!--    编辑按钮      -->
+            <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditCateDialog(scope.row.cat_id)">编辑
+            </el-button>
+            <!--    删除按钮      -->
+            <el-button size="mini" type="danger" icon="el-icon-delete" @click="deleteRoleById(scope.row.cat_id)">删除
+            </el-button>
+          </template>
+        </tree-table>
 
-    <!--  分页区域  -->
-    <slot name="pagination"></slot>
+        <!--  分页区域  -->
+        <slot name="pagination"></slot>
 
-  </el-card>
+      </el-card>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script>
@@ -90,7 +96,7 @@ export default {
   created() {
     // this.getParentCateList()
   },
-  methods:{
+  methods: {
 
     /**
      *  显示修改分类名称弹窗
@@ -144,7 +150,7 @@ export default {
 </script>
 
 <style scoped>
-.treeTable{
+.treeTable {
   margin-top: 15px;
 }
 </style>
