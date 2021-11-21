@@ -180,11 +180,12 @@ export default {
       }
     },
     /**
-     *
+     * 变更标签页时事件
      */
-    beforeTabLeave(activeName, oldActiveName) {
+      async beforeTabLeave(activeName, oldActiveName) {
       let length = this.addGoodsForm.goods_cat.length
       let form = this.$refs.addGoodsFormForm
+      await form.validate()
       if (oldActiveName === '0' && length !== 3) {
         this.$message.error({
           message: '请先选择商品分类',
