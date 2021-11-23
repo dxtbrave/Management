@@ -30,12 +30,12 @@
           <el-table-column align="center" label="操作" width="180px">
             <template slot-scope="scope">
               <!--     修改按钮     -->
-              <el-button type="primary" icon="el-icon-edit" circle @click="showEditDialog(scope.row.id)"></el-button>
+              <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)"></el-button>
               <!--     删除按钮    -->
-              <el-button type="danger" icon="el-icon-delete" circle @click="deleteUserById(scope.row.id)"></el-button>
+              <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUserById(scope.row.id)"></el-button>
               <!--     分配角色按钮     -->
               <el-tooltip effect="dark" content="分配角色" placement="top">
-                <el-button type="warning" icon="el-icon-star-off" circle @click="setRole(scope.row)"></el-button>
+                <el-button type="warning" icon="el-icon-star-off" size="mini" @click="setRole(scope.row)"></el-button>
               </el-tooltip>
             </template>
           </el-table-column>

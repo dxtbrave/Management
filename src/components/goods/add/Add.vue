@@ -10,7 +10,7 @@
     <!--  卡片视图区  -->
     <add-card-view/>
 
-<!--  图片预览Dialog  -->
+    <!--  图片预览Dialog  -->
     <preview-dialog/>
   </div>
 </template>

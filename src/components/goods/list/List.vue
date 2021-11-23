@@ -19,7 +19,7 @@
           <el-button slot="append" icon="el-icon-search" @click="_getGoodsList"></el-button>
         </el-input>
       </template>
-      <!--  添加用户按钮    -->
+      <!--  添加商品按钮    -->
       <template v-slot:addGoods>
         <el-button type="primary" @click="goAddPage">添加商品</el-button>
       </template>
@@ -39,7 +39,7 @@
 
     </list-card-view>
 
-<!--  修改商品信息Dialog  -->
+    <!--  修改商品信息Dialog  -->
     <edit-goods-dialog @updateGoodsList="_getGoodsList"/>
   </div>
 </template>
@@ -52,7 +52,7 @@ import {getGoodsList} from "@/network/goods/list";
 
 export default {
   name: "List",
-  components:{
+  components: {
     ListCardView,
     EditGoodsDialog
   },
@@ -77,9 +77,9 @@ export default {
      * 获取商品列表数据
      * @private
      */
-    _getGoodsList(){
+    _getGoodsList() {
       let {query, pagenum, pagesize} = this.queryInfo
-      getGoodsList(query,pagenum,pagesize).then(res=>{
+      getGoodsList(query, pagenum, pagesize).then(res => {
         if (res.meta.status !== 200) {
           return this.$message.error({
             message: res.meta.msg,

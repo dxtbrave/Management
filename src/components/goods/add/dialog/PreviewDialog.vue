@@ -10,14 +10,14 @@
 <script>
 export default {
   name: "PreviewDialog",
-  data(){
-    return{
-      previewVisible:false,
-      previewPath:''
+  data() {
+    return {
+      previewVisible: false,
+      previewPath: ''
     }
   },
   mounted() {
-    this.$Bus.$on('showPreviewVisible',previewPath=>{
+    this.$Bus.$on('showPreviewVisible', previewPath => {
       this.previewPath = previewPath
       this.previewVisible = true
     })
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.previewImage{
+.previewImage {
   width: 100%;
 }
 </style>

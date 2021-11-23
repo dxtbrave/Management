@@ -3,7 +3,8 @@ import axios from "axios";
 export function request(config){
 //    1.创建axios实例
     const instance = axios.create({
-        baseURL:'http://139.9.131.107:8889/api/private/v1/',
+        // baseURL:'http://139.9.131.107:8889/api/private/v1/',
+        baseURL:'http://127.0.0.1:8888/api/private/v1/',
         timeout:5000,
     })
 //    2.axios的拦截器

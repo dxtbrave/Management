@@ -82,7 +82,7 @@
               </el-upload>
             </el-tab-pane>
             <el-tab-pane label="商品内容" name="4">
-<!--      富文本编辑器         -->
+              <!--      富文本编辑器         -->
               <quill-editor v-model="addGoodsForm.goods_introduce"/>
               <el-button type="primary" class="btnAdd" @click="add">添加商品</el-button>
             </el-tab-pane>
@@ -114,10 +114,10 @@ export default {
         goods_cat: [],
         // 图片的数组
         pics: [],
-      //  商品详情描述
-        goods_introduce:'',
+        //  商品详情描述
+        goods_introduce: '',
         // 参数列表
-        attrs:[]
+        attrs: []
       },
       // 添加商品的表单数据验证对象
       addGoodsRules: {
@@ -149,7 +149,7 @@ export default {
       headerObj: {
         Authorization: window.sessionStorage.getItem('token')
       },
-      previewPath:''
+      previewPath: ''
     }
   },
   created() {
@@ -182,7 +182,7 @@ export default {
     /**
      * 变更标签页时事件
      */
-      async beforeTabLeave(activeName, oldActiveName) {
+    async beforeTabLeave(activeName, oldActiveName) {
       let length = this.addGoodsForm.goods_cat.length
       let form = this.$refs.addGoodsFormForm
       await form.validate()
@@ -233,64 +233,63 @@ export default {
      */
     handlePreview(file) {
       this.previewPath = file.response.data.url
-      this.$Bus.$emit('showPreviewVisible',this.previewPath)
+      this.$Bus.$emit('showPreviewVisible', this.previewPath)
     },
     /**
      * 处理移除图片的操作
      */
     handleRemove(file) {
-    // 1. 获取将要删除的图片的临时路径
+      // 1. 获取将要删除的图片的临时路径
       const filePath = file.response.data.tmp_path
-    // 2. 从pics数组中，找到这个图片的索引值
-      const i = this.addGoodsForm.pics.findIndex(x=> x.pic === filePath)
-    // 3. 调用数组的splice 方法， 把图片信息对象，从pics 数组中移除
-      this.addGoodsForm.pics.splice(i,1)
+      // 2. 从pics数组中，找到这个图片的索引值
+      const i = this.addGoodsForm.pics.findIndex(x => x.pic === filePath)
+      // 3. 调用数组的splice 方法， 把图片信息对象，从pics 数组中移除
+      this.addGoodsForm.pics.splice(i, 1)
     },
     /**
      * 监听图片上传成功的事件
      */
     handleSuccess(response) {
-    //  1. 拼接得到一个图片信息对象
-      const picInfo = {pic:response.data.tmp_path}
-    //  2. 将图片信息对象 push 到 pics 数组中
+      //  1. 拼接得到一个图片信息对象
+      const picInfo = {pic: response.data.tmp_path}
+      //  2. 将图片信息对象 push 到 pics 数组中
       this.addGoodsForm.pics.push(picInfo)
     },
     /**
      * 添加商品
      */
-    add(){
-      this.$refs.addGoodsFormForm.validate(valid=>{
-          if (!valid)
-          {
-            return this.$message.error({
-              message:'请填写必要的表单项！',
-              showClose:true
-            })
-          }
-      //    执行添加的业务逻辑
+    add() {
+      this.$refs.addGoodsFormForm.validate(valid => {
+        if (!valid) {
+          return this.$message.error({
+            message: '请填写必要的表单项！',
+            showClose: true
+          })
+        }
+        //    执行添加的业务逻辑
         const form = objCloneDeep(this.addGoodsForm)
         form.goods_cat = form.goods_cat.join(',')
         // 处理动态参数
-        this.manyTableDate.forEach(item=>{
-          const newInfo = {attr_id:item.attr_id,attr_value:item.attr_vals.join(' ')}
+        this.manyTableDate.forEach(item => {
+          const newInfo = {attr_id: item.attr_id, attr_value: item.attr_vals.join(' ')}
           this.addGoodsForm.attrs.push(newInfo)
         })
         // 处理静态属性
-        this.onlyTableDate.forEach(item=>{
-          const newInfo = {attr_id:item.attr_id,attr_value:item.attr_vals}
+        this.onlyTableDate.forEach(item => {
+          const newInfo = {attr_id: item.attr_id, attr_value: item.attr_vals}
           this.addGoodsForm.attrs.push(newInfo)
         })
         form.attrs = this.addGoodsForm.attrs
-        submitGoodsInfo(form).then(res=>{
-          if (res.meta.status !== 201){
+        submitGoodsInfo(form).then(res => {
+          if (res.meta.status !== 201) {
             return this.$message.error({
-              message:res.meta.msg,
-              showClose:true
+              message: res.meta.msg,
+              showClose: true
             })
           }
           this.$message.success({
-            message:res.meta.msg,
-            showClose:true
+            message: res.meta.msg,
+            showClose: true
           })
           this.$router.push('/goods')
         })
@@ -312,7 +311,8 @@ export default {
 .el-checkbox {
   margin: 0 5px !important;
 }
-.btnAdd{
+
+.btnAdd {
   margin-top: 15px;
   float: right;
 }

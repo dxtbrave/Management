@@ -89,8 +89,8 @@ export default {
     /**
      * 修改商品信息
      */
-    editGoodsInfoById(goods_id){
-      this.$Bus.$emit('showEditGoodsDialog',goods_id)
+    editGoodsInfoById(goods_id) {
+      this.$Bus.$emit('showEditGoodsDialog', goods_id)
     }
   }
 }

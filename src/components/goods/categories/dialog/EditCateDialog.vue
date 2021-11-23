@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-      title="修改角色"
+      title="修改分类名称"
       :visible.sync="editCateDialogVisible"
       @close="editCateDialogClosed"
       width="50%">

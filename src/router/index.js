@@ -1,9 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router"
 
-// 引入 nprogress
-// import NProgress from 'nprogress'
-// import 'nprogress/nprogress.css'
 
 // 导入组件
 import login from '@/components/login/Login'
@@ -16,6 +13,7 @@ import cate from "@/components/goods/categories/Cate";
 import params from "@/components/goods/params/Params"
 import list from "@/components/goods/list/List"
 import add from "@/components/goods/add/Add"
+import order from "@/components/order/Order";
 
 Vue.use(VueRouter)
 const routes = [
@@ -33,7 +31,8 @@ const routes = [
             {path:'/categories', component: cate},
             {path:'/params', component: params},
             {path: '/goods',component: list},
-            {path:'/goods/add',component: add}
+            {path:'/goods/add',component: add},
+            {path:'/orders',component: order}
         ]
     },
 
@@ -42,7 +41,7 @@ const routes = [
 
 const router = new VueRouter({
     routes,
-    mode:'hash'
+    mode:'history'
 })
 
 // 挂载路由导航守卫

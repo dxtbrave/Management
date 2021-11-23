@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-      title="修改角色"
+      title="修改商品"
       :visible.sync="editGoodsDialogVisible"
       @close="editRoleDialogClosed"
       width="50%">
@@ -27,19 +27,19 @@
 </template>
 
 <script>
-import {queryGoodsInfoById,editGoodsInfo} from "@/network/goods/list";
+import {queryGoodsInfoById, editGoodsInfo} from "@/network/goods/list";
 
 export default {
   name: "EditGoodsDialog",
-  data(){
-    return{
-      editGoodsDialogVisible:false,
-      editGoodsForm:{
-        id:'',
-        goods_name:'',
-        goods_price:'',
-        goods_number:'',
-        goods_weight:''
+  data() {
+    return {
+      editGoodsDialogVisible: false,
+      editGoodsForm: {
+        id: '',
+        goods_name: '',
+        goods_price: '',
+        goods_number: '',
+        goods_weight: ''
       },
       //  验证规则
       editGoodsFormRules: {
@@ -58,28 +58,28 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     //  监听修改对话框的关闭事件
-    editRoleDialogClosed(){
+    editRoleDialogClosed() {
       this.$refs.editGoodsFormRef.resetFields()
     },
     // 关闭对话框事件
-    editGoodsDialogVisibleChange(){
+    editGoodsDialogVisibleChange() {
       this.editGoodsDialogVisible = false
     },
     // 编辑信息事件
-    editGoodsInfo(){
-      this.$refs.editGoodsFormRef.validate(valid=>{
+    editGoodsInfo() {
+      this.$refs.editGoodsFormRef.validate(valid => {
         if (!valid) return
-        let { id,goods_name,goods_price,goods_number,goods_weight} = this.editGoodsForm
-        editGoodsInfo(id,goods_name,goods_price,goods_number,goods_weight).then(res=>{
+        let {id, goods_name, goods_price, goods_number, goods_weight} = this.editGoodsForm
+        editGoodsInfo(id, goods_name, goods_price, goods_number, goods_weight).then(res => {
           if (res.meta.status !== 200) {
             // 错误提示
             this.$message.error({
               message: res.meta.msg,
               showClose: true
             })
-          }else {
+          } else {
             //  关闭对话框
             this.editGoodsDialogVisibleChange()
             //  刷新用户列表
@@ -87,7 +87,7 @@ export default {
             //  提示成功信息
             this.$message.success({
               // message: res.meta.msg,
-              message:'修改成功',
+              message: '修改成功',
               showClose: true
             })
           }
@@ -96,8 +96,8 @@ export default {
     }
   },
   mounted() {
-    this.$Bus.$on('showEditGoodsDialog',id=>{
-      queryGoodsInfoById(id).then(res=>{
+    this.$Bus.$on('showEditGoodsDialog', id => {
+      queryGoodsInfoById(id).then(res => {
         if (res.meta.status !== 200) {
           return this.$message.error({
             message: res.meta.msg,
