@@ -9,8 +9,11 @@
     <!--  卡片视图区  -->
     <order-card-view :order-list="orderList">
       <template slot="ipt">
-        <el-input placeholder="请输入内容">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input placeholder="请输入内容"
+                  v-model="queryInfo.query"
+                  clearable
+                  @clear="_getOrderList">
+          <el-button slot="append" icon="el-icon-search" @click="_getOrderList"></el-button>
         </el-input>
       </template>
 
