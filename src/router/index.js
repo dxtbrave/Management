@@ -14,25 +14,27 @@ import params from "@/components/goods/params/Params"
 import list from "@/components/goods/list/List"
 import add from "@/components/goods/add/Add"
 import order from "@/components/order/Order";
+import report from "@/components/report/Report"
 
 Vue.use(VueRouter)
 const routes = [
-    {path:'', redirect:'/Login'},
-    {path:'/Login', component:login,},
+    {path: '', redirect: '/Login'},
+    {path: '/Login', component: login,},
     {
         path: '/Home',
         component: home,
-        redirect:'/Welcome',
-        children:[
-            {path:'/Welcome', component:welcome},
+        redirect: '/Welcome',
+        children: [
+            {path: '/Welcome', component: welcome},
             {path: '/users', component: users},
-            {path:'/roles', component: roles,},
+            {path: '/roles', component: roles,},
             {path: '/rights', component: rights,},
-            {path:'/categories', component: cate},
-            {path:'/params', component: params},
-            {path: '/goods',component: list},
-            {path:'/goods/add',component: add},
-            {path:'/orders',component: order}
+            {path: '/categories', component: cate},
+            {path: '/params', component: params},
+            {path: '/goods', component: list},
+            {path: '/goods/add', component: add},
+            {path: '/orders', component: order},
+            {path: '/reports', component: report}
         ]
     },
 
@@ -41,11 +43,11 @@ const routes = [
 
 const router = new VueRouter({
     routes,
-    mode:'history'
+    mode: 'history'
 })
 
 // 挂载路由导航守卫
-router.beforeEach((to,from,next)=>{
+router.beforeEach((to, from, next) => {
 
     // NProgress.set(0.7)
     /**
@@ -54,26 +56,26 @@ router.beforeEach((to,from,next)=>{
      * next 是一个函数，表示放行
      *  next() 放行 next('/Login')强制跳转
      */
-    if (to.path === '/Login'){
+    if (to.path === '/Login') {
         return next()
     }
 
-    if (to.path === '/Welcome'){
-        window.sessionStorage.setItem('activePath','/Welcome')
+    if (to.path === '/Welcome') {
+        window.sessionStorage.setItem('activePath', '/Welcome')
     }
 
-   // 获取token
+    // 获取token
     const tokenStr = window.sessionStorage.getItem('token')
-    if (!tokenStr){
+    if (!tokenStr) {
         return next('/Login')
     }
     next()
 })
 
-router.afterEach(()=>{
-    setTimeout(()=>{
+router.afterEach(() => {
+    setTimeout(() => {
         // NProgress.done(true)
-    },500)
+    }, 500)
 
 })
 

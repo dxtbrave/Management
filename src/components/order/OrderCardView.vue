@@ -34,7 +34,7 @@
             <template slot-scope="scope">
               <el-button type="primary" icon="el-icon-edit" size="mini" @click="showBox"></el-button>
               <el-tooltip content="物流进度" placement="top">
-              <el-button type="success" icon="el-icon-location" size="mini" @click="showProgressBox"></el-button>
+                <el-button type="success" icon="el-icon-location" size="mini" @click="showProgressBox"></el-button>
               </el-tooltip>
             </template>
           </el-table-column>
@@ -52,24 +52,24 @@ import {getOrderProgress} from "@/network/order";
 
 export default {
   name: "OrderCardView",
-  props:{
-    orderList:Array
+  props: {
+    orderList: Array
   },
-  methods:{
+  methods: {
     // 显示修改地址的对话框
-    showBox(){
+    showBox() {
       this.$Bus.$emit('showEditOrderDialog')
     },
-  //  显示物流展示对话框
-    showProgressBox(){
-      getOrderProgress().then(res=>{
-          if (res.meta.status !== 200){
-            return this.$message.error({
-              message:res.meta.msg,
-              showClose:true
-            })
-          }
-        this.$Bus.$emit('showOrderProgressDialog',res.data)
+    //  显示物流展示对话框
+    showProgressBox() {
+      getOrderProgress().then(res => {
+        if (res.meta.status !== 200) {
+          return this.$message.error({
+            message: res.meta.msg,
+            showClose: true
+          })
+        }
+        this.$Bus.$emit('showOrderProgressDialog', res.data)
       })
 
     }

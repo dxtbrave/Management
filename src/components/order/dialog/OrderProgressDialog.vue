@@ -4,15 +4,10 @@
       :visible.sync="orderProgressDialogVisible"
       @close="orderProgressDialogClosed"
       width="50%">
-<!--    <el-form :model="orderProgressForm" :rules="orderProgressFormRules" ref="orderProgressFormRef" label-width="100px">-->
-<!--      <el-form-item label="详细地址" prop="address2">-->
-<!--        <el-input v-model="orderProgressForm.address2"></el-input>-->
-<!--      </el-form-item>-->
-<!--    </el-form>-->
     <!--  时间线  -->
     <el-timeline>
       <el-timeline-item v-for="(activity,index) in progressInfo" :key="index" :timestamp="activity.ftime">
-        {{activity.context}}
+        {{ activity.context }}
       </el-timeline-item>
     </el-timeline>
     <span slot="footer" class="dialog-footer">
@@ -24,17 +19,15 @@
 
 <script>
 export default {
-name: "OrderProgressDialog",
-  data(){
-  return{
-    orderProgressDialogVisible:false,
-    orderProgressForm:{},
-    orderProgressFormRules:{},
-    // 物流信息
-    progressInfo:[]
-  }
+  name: "OrderProgressDialog",
+  data() {
+    return {
+      orderProgressDialogVisible: false,
+      // 物流信息
+      progressInfo: []
+    }
   },
-  methods:{
+  methods: {
     //  监听修改对话框的关闭事件
     orderProgressDialogClosed() {
       this.$refs.orderProgressFormRef.resetFields()
@@ -45,9 +38,8 @@ name: "OrderProgressDialog",
     },
   },
   mounted() {
-    this.$Bus.$on('showOrderProgressDialog',data=>{
+    this.$Bus.$on('showOrderProgressDialog', data => {
       this.progressInfo = data
-      console.log(this.progressInfo)
       this.orderProgressDialogVisible = true
     })
   }

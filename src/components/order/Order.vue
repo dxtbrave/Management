@@ -28,9 +28,9 @@
       </template>
     </order-card-view>
 
-<!--  修改地址对话框  -->
-    <edit-order-dialog />
-<!--  物流展示对话框   -->
+    <!--  修改地址对话框  -->
+    <edit-order-dialog/>
+    <!--  物流展示对话框   -->
     <order-progress-dialog/>
   </div>
 </template>
@@ -44,34 +44,34 @@ import OrderProgressDialog from "@/components/order/dialog/OrderProgressDialog";
 
 export default {
   name: "Order",
-  components:{
+  components: {
     OrderCardView,
     EditOrderDialog,
     OrderProgressDialog
   },
-  data(){
-    return{
-      queryInfo:{
-        query:'',
-        pagenum:1,
-        pagesize:10
+  data() {
+    return {
+      queryInfo: {
+        query: '',
+        pagenum: 1,
+        pagesize: 10
       },
       // 总数据条数
-      total:0,
+      total: 0,
       // 订单列表
-      orderList:[]
+      orderList: []
     }
   },
   created() {
     this._getOrderList()
   },
-  methods:{
+  methods: {
     /**
      * 获取订单列表
      */
-    _getOrderList(){
+    _getOrderList() {
       let {query, pagenum, pagesize} = this.queryInfo
-      getOrderList(query, pagenum, pagesize).then(res=>{
+      getOrderList(query, pagenum, pagesize).then(res => {
         if (res.meta.status !== 200) {
           return this.$message.error({
             message: res.meta.msg,
