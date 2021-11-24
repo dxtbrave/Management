@@ -30,7 +30,7 @@ export default {
   methods: {
     //  监听修改对话框的关闭事件
     orderProgressDialogClosed() {
-      this.$refs.orderProgressFormRef.resetFields()
+      this.progressInfo = []
     },
     // 关闭对话框事件
     orderProgressDialogVisibleChange() {

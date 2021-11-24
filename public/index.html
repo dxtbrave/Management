@@ -5,7 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= htmlWebpackPlugin.options.isProd ? '' : 'dev-'  + htmlWebpackPlugin.options.title %></title>
+      <% if(htmlWebpackPlugin.options.isProd){ %>
+      <script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+      <script src="https://cdn.staticfile.org/vue-router/3.5.2/vue-router.min.js"></script>
+      <script src="https://cdn.staticfile.org/axios/0.24.0/axios.min.js"></script>
+      <script src="https://cdn.staticfile.org/echarts/5.2.2/echarts.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+      <script src="https://cdn.quilljs.com/1.3.4/quill.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.6/dist/vue-quill-editor.js"></script>
+      <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"> </script>
+      <script type="text/javascript">
+          Vue.use(window.VueQuillEditor)
+      </script>
+<!--  Element样式表    -->
+      <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--   富文本编辑器样式表   -->
+      <link href="https://cdn.quilljs.com/1.3.4/quill.core.css" rel="stylesheet">
+      <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+      <link href="https://cdn.quilljs.com/1.3.4/quill.bubble.css" rel="stylesheet">
+<!--  Pace组件样式表    -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+
+      <% } %>
+
+
   </head>
   <body>
     <noscript>
