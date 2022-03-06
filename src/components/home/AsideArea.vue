@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- 收缩栏 -->
-    <div class="toggle-button" @click="toggleCollapse">|||</div>
+<!--    <div class="toggle-button" @click="toggleCollapse">|||</div>-->
+    <div class="toggle-button" @click="toggleCollapse">
+      <i :class="isCollapsed ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
+    </div>
     <el-menu
         background-color="#333744"
         text-color="#fff"
@@ -88,8 +91,8 @@ export default {
 <style scoped>
 .toggle-button{
   background-color: #4a5064;
-  font-size: 10px;
-  line-height: 24px;
+  font-size: 21px;
+  line-height: 30px;
   color: #fff;
   text-align: center;
   letter-spacing: 0.2em;
